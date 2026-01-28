@@ -47,14 +47,6 @@ The pipeline follows a standard ETL workflows:
 4. **Interactive UI:** Dashboard allows filtering by Store and Product Category with instant recalculation of metrics.
 
 
-## Project Structure
-
-```bash
-sales_project/
-├── main.py          # Entry point for the pipeline / Data generation (currently)
-└── README.md        # Project documentation
-```
-
 ## Getting Started
 
 ### Prerequisites
