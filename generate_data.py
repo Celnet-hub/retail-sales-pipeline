@@ -38,7 +38,8 @@ for _ in range(1000000):
 
 # creating the dataframe
 df = pd.DataFrame(sales_data)
-print(df.head())
 df.to_csv('sales_data.csv', index=False)
+
+print("Sales data generated and saved to sales_data.csv")
 
 
