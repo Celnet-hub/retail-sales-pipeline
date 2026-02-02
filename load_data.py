@@ -44,15 +44,15 @@ def load_to_db():
             cur.copy_expert(sql_copy_query, sd)
             print('Sales data copied successfully to database')
 
-        conn.commit()
+        db_conn.commit()
     except Exception as e:
         print(f"an error occured when copying to the database: {e}")
-        conn.rollback()
+        db_conn.rollback()
 
     finally:
         # cleanup connections
         cur.close()
-        conn.close()
+        db_conn.close()
 
 
 load_to_db()
