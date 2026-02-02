@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 
-def load_to_db():
+def db_connect():
     conn = psycopg2.connect(
         dbname=os.environ.get("DB_NAME"),
         user=os.environ.get("DB_USER"),
@@ -14,8 +14,14 @@ def load_to_db():
         host=os.environ.get("DB_HOST", "localhost"),
         port=os.environ.get("DB_PORT")
     )
+    return conn
 
-    cur = conn.cursor()
+
+def load_to_db():
+
+    # connect to db
+    db_conn = db_connect()
+    cur = db_conn.cursor()
 
     try:
         create_table_query = """
@@ -37,7 +43,7 @@ def load_to_db():
             sql_copy_query = "COPY retail_sales FROM STDIN WITH CSV HEADER"
             cur.copy_expert(sql_copy_query, sd)
             print('Sales data copied successfully to database')
-        
+
         conn.commit()
     except Exception as e:
         print(f"an error occured when copying to the database: {e}")
