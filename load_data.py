@@ -25,7 +25,7 @@ def load_to_db():
 
     try:
         create_table_query = """
-        CREATE TABLE IF NOT EXISTS retail_sales (
+        CREATE TABLE IF NOT EXISTS london_retail_sales (
             customer_name VARCHAR(100),
             store VARCHAR(50),
             category VARCHAR(50),
@@ -40,9 +40,9 @@ def load_to_db():
         print("Table created successfully")
 
         with open('sales_data.csv', 'r') as sd:
-            sql_copy_query = "COPY retail_sales FROM STDIN WITH CSV HEADER"
+            sql_copy_query = "COPY london_retail_sales FROM STDIN WITH CSV HEADER"
             cur.copy_expert(sql_copy_query, sd)
-            print('Sales data copied successfully to database')
+            print('London Sales data copied successfully to database')
 
         db_conn.commit()
     except Exception as e:
